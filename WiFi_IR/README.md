@@ -42,6 +42,10 @@ Il modulo più delicato è il file header contenente i codici che devono essere 
 
 I codici sono stati determinati con un circuito diverso che ha permesso appunto la rilevazione dei trani di impulsi emessi dal telecomando e che sono stati memorizzati in una struct specifica.
 
+Ciascuna sequenza corrisponde ad un elemento di un array il cui indice è utilizzato per la scambio di informazioni tra pagina web e software che materialmente emette la sequenza corrispondente che va ad attivare il led IR.
+
+La sequenza binaria corrispondente a ciascun codice in questo specifico caso è stata "ruotata" nell'ordine dei singoli bit, a causa del fatto che, benchè è stata utilizzata la stessa libreria software, il circuito di rilevazione dei codici è stato realizzato con un classico arduino mentre il presente circuito è stato realizzato con il nostro ESP-12F. Non mi è chiaro perché ma il passaggio da una tecnologia e l'altra ha richiesto appunto tale intervento di rotazione dell'ordine di emissione dei singoli bit delle sequenze.
+
 # Funzionamento
 Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server.
 
