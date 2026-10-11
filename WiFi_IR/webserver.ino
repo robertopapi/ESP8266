@@ -131,15 +131,6 @@ void setup_webserver()
    }
   });
 
- server.on("/shelly", []()
-  {
-   //respond with OK
-   server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-   server.sendHeader("Connection", "close");
-   server.send(200, "text/plain","OK");
-  }
- );
-
  server.on("/cmd/inline", [] ()
   {
    server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
