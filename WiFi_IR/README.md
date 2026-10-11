@@ -20,6 +20,8 @@ La ragione per cui si è prestata molta cura nel cercare di separare elettricame
 Da questo la necessità di disaccoppiare la porta del microcontrollore dal resto del circuito tramite l'optoisolatore 6N137, la cui scelta è stata dettata dalle specifiche prestazioni in media ed alta frequenza.
 L'uso del transistor NPN 2N2222 (che potrebbe essere sostituito anche con un transistor PNP che tuttavia richiederebbe la inversione della polarizzazione del circuito e alcune altri ritocchi al software), si è reso necessario per gestire opportunamente la richiesta di corrente da parte del LED IR e non gravare sul optoisolatore.
 
+![schema elettrico cricuito di controllo del microcontrollore](https://github.com/robertopapi/ESP8266/blob/09eacabcb990314327c1ac017bc2e53ee9efac2b/WiFi_IR/20261009%20IR%20micro%20RED.png)
+
 ## Software
 Lato software, ho distribuito il codice su più file e separando inoltre i file destinati al browser web che sono caricati direttamente tramite il web server.
 Il codice HTML è suddiviso su 4 variabili constant static char per comodità.
