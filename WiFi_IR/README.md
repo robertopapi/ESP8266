@@ -44,7 +44,7 @@ I codici sono stati determinati con un circuito diverso che ha permesso appunto 
 
 Ciascuna sequenza corrisponde ad un elemento di un array il cui indice è utilizzato per la scambio di informazioni tra pagina web e software che materialmente emette la sequenza corrispondente che va ad attivare il led IR.
 
-La sequenza binaria corrispondente a ciascun codice in questo specifico caso è stata "ruotata", a causa del fatto che, benchè è stata utilizzata la stessa libreria software, il circuito di rilevazione dei codici emessi dal telecomando fisico è stato realizzato con un classico arduino mentre il presente circuito è stato realizzato con il nostro ESP-12F. Non mi è chiaro perché, ma il passaggio da una tecnologia a l'altra ha richiesto appunto tale intervento di rotazione dell'ordine di emissione dei singoli bit delle sequenze.
+La sequenza binaria corrispondente a ciascun codice in questo specifico caso è stata "ruotata" con la funzione LSB2MSB(), a causa del fatto che il circuito di rilevazione dei codici emessi dal telecomando fisico è stato realizzato con un classico arduino mentre il presente circuito è stato realizzato con il nostro ESP-12F, benché è stata utilizzata la stessa libreria software. Non mi è chiaro il motivo, ma il passaggio da una tecnologia a l'altra ha richiesto appunto tale intervento di rotazione dell'ordine di emissione dei singoli bit delle sequenze.
 
 # Funzionamento
 Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server.
