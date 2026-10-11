@@ -22,6 +22,9 @@ L'uso del transistor NPN 2N2222 (che potrebbe essere sostituito anche con un tra
 
 ![schema elettrico cricuito di controllo del microcontrollore](https://github.com/robertopapi/ESP8266/blob/09eacabcb990314327c1ac017bc2e53ee9efac2b/WiFi_IR/20261009%20IR%20micro%20RED.png)
 
+Lo schema che rappresenta il circuito di governo del microcontrollore presenta, come è evidente, un connettore USB dedicato distinto da quello on-board della scheda ESP-12F, per permettere un maggiore disaccoppiamento tra l'alimentazione del microcontrollore e il circuito di potenza, benché inevitabilmente la massa è in comune (d'altra parte avere due alimentatori distinti per un circuito così modesto non era il caso). Il circuito RC posto sul pin RST è per limitare l'effetto bouncing al momento dell'alimentazione del circuito che a volte non permetto lo startup pulito del circuito. I ponticelli invece sono stati inseriti per avere la possibilità di utilizzare GPIO diversi all'occorenza.
+Il connettore rappresentato in alto corrisponde a quello del circuito di potenza ma con un diverso ordine dei pin, per ragioni di pulizia grafica dello schema.
+
 ## Software
 Lato software, ho distribuito il codice su più file e separando inoltre i file destinati al browser web che sono caricati direttamente tramite il web server.
 Il codice HTML è suddiviso su 4 variabili constant static char per comodità.
