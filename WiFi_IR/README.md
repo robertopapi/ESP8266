@@ -23,11 +23,12 @@ L'uso del transistor NPN 2N2222 (che potrebbe essere sostituito anche con un tra
 ![schema elettrico cricuito di controllo del microcontrollore](https://github.com/robertopapi/ESP8266/blob/09eacabcb990314327c1ac017bc2e53ee9efac2b/WiFi_IR/20261009%20IR%20micro%20RED.png)
 
 Lo schema che rappresenta il circuito di governo del microcontrollore presenta, come è evidente, un connettore USB dedicato distinto da quello on-board della scheda ESP-12F, per permettere un maggiore disaccoppiamento tra l'alimentazione del microcontrollore e il circuito di potenza, benché inevitabilmente la massa è in comune (d'altra parte avere due alimentatori distinti per un circuito così modesto non era il caso). Il circuito RC posto sul pin RST è per limitare l'effetto bouncing al momento dell'alimentazione del circuito che a volte non permetto lo startup pulito del circuito. I ponticelli invece sono stati inseriti per avere la possibilità di utilizzare GPIO diversi all'occorenza.
-Il connettore rappresentato in alto corrisponde a quello del circuito di potenza ma con un diverso ordine dei pin, per ragioni di pulizia grafica dello schema.
+Il connettore rappresentato in alto in questo secondo schema corrisponde a quello del circuito di potenza ma con un diverso ordine dei pin, per ragioni di pulizia grafica dello schema.
 
 ## Software
-Lato software, ho distribuito il codice su più file e separando inoltre i file destinati al browser web che sono caricati direttamente tramite il web server.
-Il codice HTML è suddiviso su 4 variabili constant static char per comodità.
+Durante la realizzazione del sistema, sono stati riscontrati diversi problemi legati all'accesso alla memoria flash. I problemi erano probabilmente dovuti al contemporaneo accesso a tale memoria durante l'avvio del microcontrollore, fase questa che è noto essere critica, soprattutto in presenza di spike di corrente, cali di tensione e fenomeni simili. Per tanto lo sviluppo del software è stato teso a limitare il più possibile, se non ad escluderlo completamente, l'acceso alla memoria flash, anche se questo ha richiesto l'implementazione del filesystem LittleFS, dove memorizzare i file esposti dal webserver.
+Un altro accorgimento, utile durante la fase di sviluppo, è stato quello di definire un vocabolario editabile, dove specificare le parole chiave che il software di interpretazione del parlato (in italiano suona proprio male: parlo del speech to text) utilizza per attivare i singoli comandi che vanno trasformati in sequenze di impulsi per il led IR.
+
 
 # Funzionamento
 Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server.
