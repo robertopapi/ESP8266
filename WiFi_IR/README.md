@@ -28,6 +28,10 @@ Il connettore rappresentato in alto in questo secondo schema corrisponde a quell
 ## Software
 Durante la realizzazione del sistema, sono stati riscontrati diversi problemi legati all'accesso alla memoria flash. I problemi erano probabilmente dovuti al contemporaneo accesso a tale memoria durante l'avvio del microcontrollore, fase questa che è noto essere critica, soprattutto in presenza di spike di corrente, cali di tensione e fenomeni simili. Per tanto lo sviluppo del software è stato teso a limitare il più possibile, se non ad escluderlo completamente, l'acceso alla memoria flash, anche se questo ha richiesto l'implementazione del filesystem LittleFS, dove memorizzare i file esposti dal webserver.
 Un altro accorgimento, utile durante la fase di sviluppo, è stato quello di definire un vocabolario editabile, dove specificare le parole chiave che il software di interpretazione del parlato (in italiano suona proprio male: parlo del speech to text) utilizza per attivare i singoli comandi che vanno trasformati in sequenze di impulsi per il led IR.
+Il modulo principale dello sketch è molto semplice e si limita a caricare le librerie, attivare l'interfaccia verso la rete e il webserver.
+Il modulo specifico per l'accesso alla rete e la gestione del webserver, prevede l'utilizzo delle librerie standard, senza approfittare delle librerie più evolute, come wifimanager, per cui si è preferito riscrivere le parti che gestiscono le diverse casistiche di accesso, come la prima attivazione in modalità AccessPoint per permettere la memorizzazione delle credenziali dela rete wifi.
+Come anticipato in questo secondo modulo si è preferito utilizzare un piccolo file json per memorizzare le credenziali wifi al posto di approfittare della memoria flash, a causa dei problemi di accesso alla memoria flash.
+Il modulo di gestione dell'aggiornamento del software nella modalità OTA è quasi vuoto ma può essere arricchito con delle diagnostiche aventi la seriale come output.
 
 
 # Funzionamento
