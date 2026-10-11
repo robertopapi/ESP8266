@@ -1,0 +1,327 @@
+*
+{
+ font-family:arial;
+ font-size:14px;
+ box-sizing: border-box;
+}
+TEXTAREA
+{
+ padding:0px;
+ margin:0px;
+}
+DIV
+{
+ justify-content: center;
+ align-items: center;
+ padding:0px;
+ margin:0px;
+ border:0px;
+}
+.btn
+{
+ position: relative;
+ width: 80px;
+ height: 40px;
+ background: transparent;
+ background-color: transparent;
+ border: none;
+ cursor: pointer;
+ padding: 0px;
+ filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.3));
+ transition: filter 0.1s ease, transform 0.1s ease;
+}
+.btn.square
+{
+ width:60px;
+ height:60px;
+}
+.btn.little
+{
+ width:60px;
+}
+.btn.big
+{
+ width:60px;
+ height:60px;
+}
+.btn span
+{
+ position: relative;
+ z-index: 1;
+ color: white;
+ font-size: 14px;
+ left:3px;
+ top:3px;
+}
+.btn::before
+{
+ content: '';
+ position: absolute;
+ top: 0px;
+ left: 0px;
+ width: 100%;
+ height: 100%;
+ background-color: black;
+ border:3px outset;
+ border-radius:8px;
+}
+.btn.up::before
+{
+ clip-path: polygon(50% 0%, 100% 50%, 0% 50%);
+}
+.btn.down::before
+{
+ clip-path: polygon(0% 50%, 100% 50%, 50% 100%);
+}
+.btn.left::before
+{
+ clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+}
+.btn.right::before
+{
+ clip-path: polygon(0% 0%, 50% 50%, 0% 100%);
+}
+.btn.roundedtop::before
+{
+ border-radius:8px 8px 0px 0px;
+}
+.btn.roundedbottom::before
+{
+ border-radius:0px 0px 8px 8px;
+}
+.btn:active
+{
+ filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.4));
+ transform: translate(1px, 1px);
+}
+.cont
+{
+ background-color:transparent;
+}
+.cont.contActive
+{
+ background-color:blue;
+}
+.clickable
+{
+ cursor: pointer;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.invisible
+{
+ width:10px;
+ height:10px;
+ margin:0px;
+ border-color: transparent;
+ background-color: transparent;
+ padding:0px;
+}
+.invisible:hover,.debugActive
+{
+ border: 2px outset gray;
+ background-color: white;
+}
+.btn.mic
+{
+ background-color:transparent;
+}
+.mic.micActive
+{
+ background-color:red;
+}
+.frame
+{
+ width:340px;
+ height:720px; /* altezza del frame-inner + altezza swipebtnframe */
+ position:relative;
+ overflow-x: hidden;
+ overflow-y: hidden; 
+ place-self:center;
+ border-top: 1px solid black;
+ border-bottom: 1px solid black;
+ display: grid;
+ justify-content: center;
+ align-items: center;
+ padding:0px;
+ margin:0px;
+}
+.frame-inner
+{
+ position: absolute; 
+ top: 0px;
+ left: 0px;
+ height:690px;
+ transition: none;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin:0px;
+ padding:0px;
+ text-align: center;
+ visibility: visible;
+ transition: all 1s;
+}
+.swipebtnframe
+{
+ display: grid;
+ justify-content: center;
+ align-items: center;
+}
+.swipebtn
+{
+ position: relative;
+ background-color: white;
+ border:1px solid black;
+ border-radius:4px;
+ cursor: pointer;
+ padding: 0px;
+ -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
+}
+.swipebtn.selected
+{
+ background-color: black;
+}
+.modal
+{
+ display: none;
+ grid-template-columns:auto;
+ position: fixed;
+ z-index: 1000;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.6);
+ backdrop-filter: blur(3px);
+}
+.modal-content
+{
+ display: grid;
+ grid-template-columns:auto;
+ justify-content: center;
+ align-items: center;
+ background-color: #ffffff;
+ margin: 0px;
+ padding: 2px;
+ border-radius: 8px;
+ max-width: 340px;
+ box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.close
+{
+ font-size: 28px;
+ font-weight: bold;
+ text-align: right;
+ cursor: pointer;
+ color: #888;
+}
+.close:hover
+{
+ color: #000;
+}
+.kbcontainer
+{
+ display:grid;
+ padding:0px;
+ grid-gap:2px;
+ margin:0px;
+ width:100%;
+}
+.kbcontainer > div
+{
+ display:flex;
+ padding:1px;
+ margin:1px;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+}
+.swipecontainer
+{
+ display:grid;
+ padding:0px;
+ grid-gap:0px;
+ margin:0px;
+ grid-template-columns:340px 340px 340px 340px;
+}
+.swipecontainer > div
+{
+ display:block;
+ padding:0px;
+ margin:0px;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+ height:690px;
+}
+.viewcontent
+{
+ width:340px;
+ position:relative;
+ height:690px;
+ padding:0px;
+ margin:0px;
+ border:0px;
+ grid-gap:0px;
+ display: grid;
+ justify-content: center;
+ align-items: center;
+ overflow-y:auto;
+}
+.frameprg
+{
+ display: flex;
+ width:310px;
+ height:40px;
+ border:3px outset;
+ border-radius:8px;
+}
+.frameprg.blue
+{
+ background-image: linear-gradient(to bottom right, cyan, indigo, blue);
+}
+.frameprg.red
+{
+ background-image: linear-gradient(to bottom right, yellow, red, orange);
+}
+.frameprg.brown
+{
+ background-image: linear-gradient(to bottom right, cyan, brown, yellow);
+}
+.frameprg.black
+{
+ background-image: linear-gradient(to bottom right, gold, black, darkgoldenrod);
+}
+.frameprg.olive
+{
+ background-image: linear-gradient(to bottom right, cyan, olive, lime);
+}
+.frameprg.lime
+{
+ background-image: linear-gradient(to bottom right, cyan, lime, yellow);
+}
+.frameprg.violet
+{
+ background-image: linear-gradient(to bottom right, red, violet, yellow);
+}
+.frameprg.indianred
+{
+ background-image: linear-gradient(to bottom right, khaki, indianred, goldenrod);
+}
+.frameprg > span
+{
+ color: white;
+ text-shadow: 1px 1px gray;
+}
+.swipetitle
+{
+ padding:4px;
+ background-color:whitesmoke;
+ border-radius:8px; 
+}

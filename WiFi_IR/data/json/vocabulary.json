@@ -1,0 +1,316 @@
+{
+ "commands":
+ {
+  "direct":
+  [
+   {
+    "action": "POWER",
+    "repeat":false,
+    "code": 1,
+    "keywords": ["accendi", "spegni", "standby"]
+   },
+   {
+    "action": "VOL_UP",
+    "repeat":true,
+    "code": 41,
+    "keywords": ["alza", "aumenta"]
+   },
+   {
+    "action": "VOL_DOWN",
+    "repeat":true,
+    "code": 45,
+    "keywords": ["abbassa", "diminuisci"]
+   },
+   {
+    "action": "MUTE",
+    "repeat":false,
+    "code": 43,
+    "keywords": ["muto", "silenzioso", "mute"]
+   },
+   {
+    "action": "PRG+",
+    "repeat":true,
+    "code": 42,
+    "keywords": ["successivo", "avanti"]
+   },
+   {
+    "action": "PRG-",
+    "repeat":true,
+    "code": 46,
+    "keywords": ["precedente", "indietro"]
+   },
+   {
+    "action": "CHANNEL-PAGE",
+    "repeat":false,
+    "code": 99,
+    "keywords": ["canale", "pagina"]
+   },
+   {
+    "action": "SUBTITLES",
+    "repeat":false,
+    "code": 40,
+    "keywords": ["sottotitoli", "subtitles"]
+   }   
+  ],
+  "navigation":
+  [
+   {
+    "action": "MORE",
+    "repeat":false,
+    "code": 98,
+    "keywords": ["ancora", "vai"]
+   },
+   {
+    "action": "GUIDE",
+    "repeat":false,
+    "code": 19,
+    "keywords": ["guida", "guide"]
+   },
+   {
+    "action": "HOME",
+    "repeat":false,
+    "code": 28,
+    "keywords": ["home"]
+   },
+   {
+    "action": "NAV_UP",
+    "repeat":true,
+    "code": 20,
+    "keywords": ["su", "sopra"]
+   },
+   {
+    "action": "NAV_DOWN",
+    "repeat":true,
+    "code": 26,
+    "keywords": ["giù", "sotto"]
+   },
+   {
+    "action": "NAV_LEFT",
+    "repeat":true,
+    "code": 22,
+    "keywords": ["sinistra"]
+   },
+   {
+    "action": "NAV_RIGHT",
+    "repeat":true,
+    "code": 24,
+    "keywords": ["destra"]
+   },
+   {
+    "action": "ENTER",
+    "repeat":false,
+    "code": 23,
+    "keywords": ["ok", "conferma", "entra", "seleziona"]
+   },
+   {
+    "action": "BACK",
+    "repeat":false,
+    "code": 25,
+    "keywords": ["esci", "back", "return"]
+   },
+   {
+    "action": "OPTIONS",
+    "repeat":false,
+    "code": 27,
+    "keywords": ["options"]
+   },
+   {
+    "action": "RETURN",
+    "repeat":false,
+    "code": 25,
+    "keywords": ["return"]
+   }
+  ]
+ },
+ "program":
+ {
+  "channels":
+  [
+   {
+    "prg": "RAI1 HD",
+    "bg": "blue",
+    "chnum": "1"
+   },
+   {
+    "prg": "RAI2 HD",
+    "bg": "blue",
+    "chnum": "2"
+   },
+   {
+    "prg": "RAI3 HD",
+    "bg": "blue",
+    "chnum": "3"
+   },
+   {
+    "prg": "RAI4",
+    "bg": "blue",
+    "chnum": "4"
+   },
+   {
+    "prg": "RAI5",
+    "bg": "blue",
+    "chnum": "5"
+   },
+   {
+    "prg": "RAI Movie HD",
+    "bg": "blue",
+    "chnum": "6"
+   },
+   {
+    "prg": "RAI Premium",
+    "bg": "blue",
+    "chnum": "7"
+   },
+   {
+    "prg": "RAI News 24",
+    "bg": "blue",
+    "chnum": "10"
+   },
+   {
+    "prg": "RAI 3 TGR Lazio HD",
+    "bg": "blue",
+    "chnum": "11"
+   },
+   {
+    "prg": "Rete 4 HD",
+    "bg": "red",
+    "chnum": "12"
+   },
+   {
+    "prg": "Canale 5 HD",
+    "bg": "red",
+    "chnum": "13"
+   },
+   {
+    "prg": "Italia 1 HD",
+    "bg": "red",
+    "chnum": "14"
+   },
+   {
+    "prg": "Mediaset Italia 2 HD",
+    "bg": "red",
+    "chnum": "15"
+   },
+   {
+    "prg": "Cine34 HD",
+    "bg": "red",
+    "chnum": "16"
+   },
+   {
+    "prg": "La5 HD",
+    "bg": "red",
+    "chnum": "17"
+   },
+   {
+    "prg": "Iris HD",
+    "bg": "red",
+    "chnum": "18"
+   },
+   {
+    "prg": "20 Mediaset HD",
+    "bg": "red",
+    "chnum": "19"
+   },
+   {
+    "prg": "Mediaset Extra HD",
+    "bg": "red",
+    "chnum": "20"
+   },
+   {
+    "prg": "27 twentyseven HD",
+    "bg": "red",
+    "chnum": "21"
+   },
+   {
+    "prg": "La7 HD",
+    "bg": "brown",
+    "chnum": "22"
+   },
+   {
+    "prg": "La7 Cinema",
+    "bg": "brown",
+    "chnum": "23"
+   },
+   {
+    "prg": "Cielo",
+    "bg": "black",
+    "chnum": "24"
+   },
+   {
+    "prg": "Real Time",
+    "bg": "olive",
+    "chnum": "25"
+   },
+   {
+    "prg": "DMAX",
+    "bg": "olive",
+    "chnum": "26"
+   },
+   {
+    "prg": "Focus HD",
+    "bg": "red",
+    "chnum": "27"
+   },
+   {
+    "prg": "Nove",
+    "bg": "olive",
+    "chnum": "28"
+   },
+   {
+    "prg": "TV8",
+    "bg": "black",
+    "chnum": "29"
+   },
+   {
+    "prg": "Discovery Turbo",
+    "bg": "olive",
+    "chnum": "30"
+   },
+   {
+    "prg": "FoodNetwork",
+    "bg": "olive",
+    "chnum": "31"
+   },
+   {
+    "prg": "Discovery",
+    "bg": "olive",
+    "chnum": "32"
+   },
+   {
+    "prg": "SKY TG 24",
+    "bg": "black",
+    "chnum": "33"
+   },
+   {
+    "prg": "Virgin Radio",
+    "bg": "red",
+    "chnum": "34"
+   },
+   {
+    "prg": "Radio24 TV",
+    "bg": "lime",
+    "chnum": "35"
+   },
+   {
+    "prg": "VH1",
+    "bg": "violet",
+    "chnum": "36"
+   },
+   {
+    "prg": "vatican media HD",
+    "bg": "indianred",
+    "chnum": "37"
+   },
+   {
+    "prg": "RAI3 TGR Toscana",
+    "bg": "blue",
+    "chnum": "39"
+   },
+   {
+    "prg": "RAI3 TGR Umbria",
+    "bg": "blue",
+    "chnum": "40"
+   }
+  ]
+ }
+}

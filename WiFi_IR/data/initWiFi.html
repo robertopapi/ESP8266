@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta name="format-detection" content="telephone=no">
+  <meta charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta  name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwQAADsEBuJFr7QAAAG1JREFUOE/dkMsKwCAMBPP/P21PK+m4moOCtANBdhLTR7TDBMUuw8KI6DXz7GVsx12gYxbWumE6ZmGtG6ZjFta64R//w9lnVVl4u0FfqCeuTlbui3Ih+xXlQp6E/u5CVWbIr2DexrkM/ccWnuABgm9H/1TdcU8AAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+  <style>
+   body{font-family:sans-serif;padding:20px;}
+   input{display:block;margin:10px 0;padding:8px;width:100%;box-sizing:border-box;}
+  </style>
+ </head>
+ <body>
+  <h1 style="text-align:center;">IR WiFi Network Configuration</h1>
+  <form action='/cmd/saveconfwifi' method='POST'>
+   <input type='text' name='ssid' placeholder='SSID' required>
+   <input type='password' name='password' placeholder='Password'>
+   <input type='submit' value='Save and Connect'>
+  </form>
+ </body>
+</html>

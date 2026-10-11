@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>IR WiFi</title>
+<meta name="format-detection" content="telephone=no">
+<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta  name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwQAADsEBuJFr7QAAAG1JREFUOE/dkMsKwCAMBPP/P21PK+m4moOCtANBdhLTR7TDBMUuw8KI6DXz7GVsx12gYxbWumE6ZmGtG6ZjFta64R//w9lnVVl4u0FfqCeuTlbui3Ih+xXlQp6E/u5CVWbIr2DexrkM/ccWnuABgm9H/1TdcU8AAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body onload="onLoad()">
+<script src="js/index.js"></script>
+<!-- <div id="main" style="display: flex;"> -->
+ <div id="main" style="display:grid;grid-template-columns:auto;">
+  <div id="titlebar" style="top:0px;">
+   <div class="kbcontainer" style="grid-template-columns:15px 310px 15px;">
+    <div><button type="button" id="debugBtn" class="invisible clickable" onclick="javascript:showdebug();"></button></div>
+    <div><h1>IR WiFi</h1></div>
+    <div>&nbsp;</div>
+   </div>
+  </div>
+  <div style="display:grid;grid-template-columns:auto;">
+  
+   <div class="frame">
+    <div class="frame-inner" id="frameswipe">
+     <div class="swipecontainer">
+      <div id="swiped1">
+       <div class="swipetitle">&#x1f3a4;&#xFE0F;</div><!-- mic - il secondo codice è il Variation Selectors 16 (VS16), un carattere invisibile che forza la visualizzazione di questo simbolo come emoji colorata/grafica -->
+       <div class="viewcontent">
+
+        <div class="kbcontainer" style="grid-template-rows:repeat(5,1fr);">
+         <div>
+          <div class="kbcontainer" style="grid-template-columns:repeat(3,1fr);">
+           <div><button type="button" class="btn" onclick="javascript:toggleRec();"><span id="micIcon" class="mic">&#x1f3a4;&#xFE0F;</span></button></div>
+           <div>&nbsp;</div>
+           <div><button type="button" id="contBtn" class="btn" onclick="javascript:toggleContinuousMode(this);"><span class="cont">cont</span></button></div>
+          </div>
+         </div>
+         <div>&nbsp</div>
+         <div><textarea id="cleanText" rows="3" cols="40"></textarea></div>
+         <div><textarea id="matchedCommand" rows="3" cols="40"></textarea></div>
+         <div><textarea id="repeat" rows="3" cols="40"></textarea></div>
+        </div>
+       
+       </div>
+         
+      </div>
+      <div id="swiped2">
+       <div class="swipetitle">&#x2328;&#xFE0F;</div><!--keyboard-->
+       <div class="viewcontent">
+       
+        <div>
+        <div class="kbcontainer" style="grid-template-columns:repeat(3,1fr);">
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('0');"><span>source</span></button></div>
+         <div>&nbsp;</div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('1');"><span>on-off</span></button></div>
+    
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('19');"><span>guide</span></button></div>
+         <div>&nbsp;</div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('21');"><span>i-plus</span></button></div>
+
+         <div>&nbsp;</div>
+         <div><button type="button" class="btn square up" onclick="javascript:cmd2server('20');"></button></div>
+         <div>&nbsp;</div>
+    
+         <div><button type="button" class="btn square left"  onclick="javascript:cmd2server('22');"></button></div>
+         <div><button type="button" class="btn big" onclick="javascript:cmd2server('23');"><span>ok</span></button></div>
+         <div><button type="button"  class="btn square right" onclick="javascript:cmd2server('24');"></button></div>
+    
+         <div>&nbsp;</div>
+         <div><button type="button" class="btn square down"  onclick="javascript:cmd2server('26');"></button></div>
+         <div>&nbsp;</div>
+
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('25');"><span>return</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('28');"><span>home</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('27');"><span>options</span></button></div>
+    
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('29');"><span>1</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('30');"><span>2</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('31');"><span>3</span></button></div>
+    
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('32');"><span>4</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('33');"><span>5</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('34');"><span>6</span></button></div>
+    
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('35');"><span>7</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('36');"><span>8</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('37');"><span>9</span></button></div>
+    
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('38');"><span>teletext</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('39');"><span>0</span></button></div>
+         <div><button type="button" class="btn" onclick="javascript:cmd2server('40');"><span>subtitles</span></button></div>
+        </div>
+        
+        <br>
+        
+        <div class="kbcontainer" style="grid-template-columns:repeat(4,1fr);">
+         <div><button type="button" class="btn little" onclick="javascript:cmd2server('43');"><span>mute</span></button></div>
+         <div>
+          <div class="kbcontainer" style="grid-template-rows:repeat(2,1fr);">
+           <div><button type="button" class="btn little roundedtop" onclick="javascript:cmd2server('41');"><span>vol+</span></button></div>
+           <div><button type="button" class="btn little roundedbottom"  onclick="javascript:cmd2server('45');"><span>vol-</span></button></div>
+          </div>
+         </div>
+         <div>
+          <div class="kbcontainer" style="grid-template-rows:repeat(2,1fr);">
+           <div><button type="button" class="btn little roundedtop"  onclick="javascript:cmd2server('42');"><span>prg+</span></button></div>
+           <div><button type="button" class="btn little roundedbottom" onclick="javascript:cmd2server('46');"><span>prg-</span></button></div>
+          </div>
+         </div>
+         <div><button type="button" class="btn little" onclick="javascript:cmd2server('44');"><span>audio</span></button></div>
+        </div>
+       </div>
+    
+       </div>
+      </div>
+      <div id="swiped3">
+       <div class="swipetitle">&#x1F4D1;&#xFE0F;</div><!-- bookmark tabs -->
+       
+       <div class="viewcontent">
+        <div class="kbcontainer" id="listprg" style="grid-template:auto;"></div>
+       </div>        
+
+      </div>
+      <div id="swiped4">
+       <div class="swipetitle">&#x2699;&#xFE0F;</div><!--gear-->
+       
+       <div class="viewcontent">
+       
+        <div>
+       
+        <div class="kbcontainer" style="grid-template-rows:20px auto auto; border:1px solid black; border-radius:8px;">
+        <!-- OPZIONE 1: EDITING DIRETTO DEL TEXTAREA -->
+         <div>Manual change:</div>
+         <div><textarea id="jsonTextarea" rows="10" cols="40" spellcheck="false" placeholder="Loading..."></textarea></div>
+         <div><button id="saveTextareaBtn" class="btn-primary">Save</button></div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="kbcontainer" style="grid-template-rows:20px auto auto; border:1px solid black; border-radius:8px;">
+         <!-- OPZIONE 2: UPLOAD FILE LOCALE -->
+         <div>Load vocabulary:</div>
+         <div><input type="file" id="fileInput" accept=".json"></div>
+         <div><button id="uploadFileBtn" class="btn-secondary">Load</button></div>
+        </div>
+        
+        </div>
+        
+       </div>        
+
+      </div>
+     </div>
+     
+    </div>
+   </div>
+   <div class="swipebtnframe">
+    <div class="kbcontainer" style="grid-template-columns:10px 10px 10px 10px;">
+     <div><span id="st0" data-swipepos="0" class="swipebtn selected" onclick="javascript:swipecurrentpos=parseInt(this.dataset.swipepos);selectswipe();">&nbsp;</span></div>
+     <div><span id="st1" data-swipepos="1" class="swipebtn" onclick="javascript:swipecurrentpos=parseInt(this.dataset.swipepos);selectswipe();">&nbsp;</span></div>
+     <div><span id="st2" data-swipepos="2" class="swipebtn" onclick="javascript:swipecurrentpos=parseInt(this.dataset.swipepos);selectswipe();">&nbsp;</span></div>
+     <div><span id="st3" data-swipepos="3" class="swipebtn" onclick="javascript:swipecurrentpos=parseInt(this.dataset.swipepos);selectswipe();">&nbsp;</span></div>
+    </div>
+   </div>
+   <div id="resp">&nbsp;</div>
+    
+   </div>
+
+  <div id="paneldebug" class="modal"><!-- modale -->
+   <div class="modal-content">
+    <div id="closeConfigBtn" class="close" onclick="javascript:showdebug();">&times;</div>
+    <div onclick="javascript:debug('');">del</div>
+    <div><textarea id="debug" name="debug" rows="10" cols="40"></textarea></div>
+   </div>
+  </div><!-- modale -->
+ </div><!--main-->
+ 
+ <script src="js/swiped-events.js"></script>
+</body>
+</html>
