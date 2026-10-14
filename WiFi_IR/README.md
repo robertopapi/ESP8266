@@ -70,6 +70,14 @@ la GUI è suddivisa in tre parti
 
 Nel corpo centrale l'ultima pagina da la possibilità di modificare e salvare il vocabolario, sia editandolo direttamente che permettendo di caricare un file. Ovviamente il formato del json deve essere rigorosamente rispettato.
 
+Di seguito gli screenshot delle singole pagine
+
+![comandi vocali](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
+![tasti](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
+![scorciatoie](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
+![vocabolario](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
+
+
 # Funzionamento
 Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server 
 
