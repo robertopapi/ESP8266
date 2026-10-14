@@ -26,23 +26,35 @@ Lo schema che rappresenta il circuito di governo del microcontrollore presenta, 
 Il connettore rappresentato in alto in questo secondo schema corrisponde a quello del circuito di potenza ma con un diverso ordine dei pin, per ragioni di pulizia grafica dello schema.
 
 ## Software
-Durante la realizzazione del sistema, sono stati riscontrati diversi problemi legati all'accesso alla memoria flash. I problemi erano probabilmente dovuti al fatto che il software accedeva a tale memoria quando il microcontrollore era ancora in fase di avvio, fase evidentemente delicata, soprattutto in presenza di spike di corrente, cali di tensione e fenomeni simili. Per tanto lo sviluppo del software è stato teso a limitare il più possibile, se non ad escluderlo completamente, l'acceso alla memoria flash, anche se questo ha richiesto l'implementazione del filesystem LittleFS, dove memorizzare i file esposti dal webserver.
+Durante la realizzazione del sistema, sono stati riscontrati diversi problemi legati all'accesso alla memoria flash. I problemi erano probabilmente dovuti al fatto che il software accedeva a tale memoria quando il microcontrollore era ancora in fase di avvio, fase evidentemente delicata, soprattutto in presenza di spike di corrente, cali di tensione e fenomeni simili. Per tanto lo sviluppo del software è stato teso a limitare il più possibile, se non ad escluderlo completamente, l'acceso alla memoria flash, anche se questo ha richiesto l'implementazione del filesystem LittleFS, dove memorizzare le credenziali di accesso alla rete wifi (data/json/c.json) i file esposti dal webserver (a partire dalla directory data, dove sono memorizzati i file html, e dalle subdirectory css, js e json).
 
-Un altro accorgimento, utile durante la fase di sviluppo, è stato quello di definire un vocabolario editabile, dove specificare le parole chiave che il software di interpretazione del parlato (in italiano suona proprio male: parlo del speech to text) utilizza per attivare i singoli comandi che vanno trasformati in sequenze di impulsi per il led IR.
+Un altro accorgimento, utile durante la fase di sviluppo, è stato quello di definire un vocabolario editabile (data/json/vocabulary.json), dove specificare le parole chiave che il software di interpretazione del parlato (in italiano suona proprio male: parlo del speech to text) utilizza per attivare i singoli comandi che vanno trasformati in sequenze di impulsi per il led IR.
 
-Il modulo principale dello sketch è molto semplice e si limita a caricare le librerie, attivare l'interfaccia verso la rete e il webserver.
+Il modulo principale dello sketch (esp8266_IR_WIFI.ino) è molto semplice e si limita a caricare le librerie, attivare l'interfaccia verso la rete e il webserver.
 
-Il modulo specifico per l'accesso alla rete e la gestione del webserver, prevede l'utilizzo delle librerie standard, senza approfittare delle librerie più evolute, come wifimanager, per cui si è preferito riscrivere le parti che gestiscono le diverse casistiche di accesso, come la prima attivazione in modalità AccessPoint per permettere la memorizzazione delle credenziali dela rete wifi.
+Il modulo specifico per l'accesso alla rete e la gestione del webserver (webserver.ino), prevede l'utilizzo delle librerie standard, senza approfittare delle librerie più evolute, come wifimanager, per cui si è preferito riscrivere le parti che gestiscono le diverse casistiche di accesso, come la prima attivazione in modalità AccessPoint per permettere la memorizzazione delle credenziali dela rete wifi. Come anticipato in questo secondo modulo si è preferito utilizzare un piccolo file json per memorizzare le credenziali wifi al posto di approfittare della memoria flash, a causa dei problemi di accesso alla memoria flash.
 
-Come anticipato in questo secondo modulo si è preferito utilizzare un piccolo file json per memorizzare le credenziali wifi al posto di approfittare della memoria flash, a causa dei problemi di accesso alla memoria flash.
+Il modulo di gestione dell'aggiornamento del software nella modalità OTA (ota.ino) è quasi vuoto ma può essere arricchito con delle diagnostiche aventi la seriale come output.
 
-Il modulo di gestione dell'aggiornamento del software nella modalità OTA è quasi vuoto ma può essere arricchito con delle diagnostiche aventi la seriale come output.
+Il modulo più delicato è il file header (IRCodeConf_sony.h) contenente i codici che devono essere trasmessi dal led IR, corrispondenti ai tasti del telecomando TV.
 
-Il modulo più delicato è il file header contenente i codici che devono essere trasmessi da led IR corrispondenti ai tasti del telecomando TV.
-
-I codici sono stati determinati con un circuito diverso che ha permesso appunto la rilevazione dei trani di impulsi emessi dal telecomando e che sono stati memorizzati in una struct specifica.
+I codici sono stati determinati con un circuito diverso che ha permesso appunto la rilevazione dei treni di impulsi emessi dal telecomando e che sono stati memorizzati in una struct specifica.
 
 Ciascuna sequenza corrisponde ad un elemento di un array il cui indice è utilizzato per la scambio di informazioni tra pagina web e software che materialmente emette la sequenza corrispondente che va ad attivare il led IR.
+
+Come detto prima, il "vocabolario" definisce le parole chiavi corrispondenti ai singoli tasti del teleecomando che possono essere premuti. Va precisato tuttavia che la pressione dei tasti del telecomando è subordinata alla funzione-contesto attivo in quel momento sul televisore e che il nostro piccolo sistema ovviamente non conosce. Da ciò la necessità di suddividere i comandi in alcune categorie che riassumo di seguito:
+
+* comandi "diretti" (direct) - sono i comandi che attivano una determinata funzione, che corrispondono esattamente al tasto del telecomando (eccetto uno di cui spiego più avanti) e che non dipendono direttamente dal contesto attivo in quel momento sulla tv.
+* comandi "di navigazione" (navigation) - sono i comandi dell'ipotetico cursore (es. freccia su e giù), che pure corrispondono ai tasti del telecomando (eccetto uno come nella categoria precedente) e che tuttavia sono efficaci solo nell'ambito dei contesti che prevedono questo tipo di navigazione.
+* comandi "programmi-canali" (program-channels) - sono comandi "virtuali" che NON corrispondono ai singoli tasti del telecomando ma a loro brevi sequenze (banalmente corrispondonon al canale memorizzato sulla tv che può essere costituito da una o più cifre)
+
+Tutti i comandi hanno l'attributo "repeat" che sta ad indicare al software che se posto a vero, a seguire potrebbe esserci il numero delle volte che tale comando (cioè virtualmente tale tasto del telecomando) deve essere ripetuto (ad esempio "DIMINUISCI il volume di 3" sta a significare che il tasto VOL_DOWN, cioè il treno di impulsi IR corrispondenti, deve essere ripetuto tre volte). Laddove l'attributo repeat è falso allora l'eventuale numero presente nel testo del comando vocale deve essere ignorato, ovvero deve essere trattato in modo particolare in base a quanto descritto poi.
+
+Tra i comandi diretti e quelli di navigazione ci sono due comandi speciali che hanno codice rispettivamente 99 e 98 e che sono necessari per l'intepretazione dei comandi vocali successivi.
+Nello specifico il comando "CHANNEL-PAGE" (codice 99) dice al software che il testo corrispondente al comando vocale contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e "2").
+Il secondo comando speciale che è solo una commodity, il comando "MORE", sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
+
+
 
 La sequenza binaria corrispondente a ciascun codice in questo specifico caso è stata "ruotata" con la funzione LSB2MSB(), a causa del fatto che il circuito di rilevazione dei codici emessi dal telecomando fisico è stato realizzato con un classico arduino mentre il presente circuito è stato realizzato con il nostro ESP-12F, benché è stata utilizzata la stessa libreria software. Non mi è chiaro il motivo, ma il passaggio da una tecnologia a l'altra ha richiesto appunto tale intervento di rotazione dell'ordine di emissione dei singoli bit delle sequenze.
 
