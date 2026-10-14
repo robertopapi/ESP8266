@@ -2,10 +2,10 @@
 
 ## Obiettivi
 L'obiettivo del progetto è quello di sostituire un normale telecomando TV a infrarossi di un "vecchio" TV Sony con un piccolo dispositivo che gestisca l'emissione dei treni di impulsi IR, grazie a comandi ricevuti attraverso una semplice interfaccia web. Pre-requisiti sono:
-* l'uso di un piccolo controllore ESP8266, nello specifico un ESP-12F che offre 4 MB di memoria totale e alcune porte in più rispetto al ESP-01S, che pure dispone di un solo MB di memoria.
-* la generazione dei treni di impulsi verso il LED IR offerto tramite le librerie IRremoteESP8266 e IRsend (https://github.com/crankyoldgit/irremoteesp8266).
-* l'accesso web offerto tramite la libreria ESP8266WebServer (https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer)
-* l'utilizzo di tecniche di comunicazione con il client web tramite delle semplici chiamate di tipo webservice, delegando alla interfaccia sviluppata in HTML, tutta la complessità di interpretazione del comportamento utente
+* l'uso di un piccolo microcontrollore ESP8266, nello specifico un ESP-12F che offre 4 MB di memoria totale e alcune porte in più rispetto al ESP-01S, che viceversa dispone di un solo MB di memoria è un numero limitatissimo di porte disponibili;
+* la generazione dei treni di impulsi verso il LED IR generati tramite le librerie IRremoteESP8266 e IRsend (https://github.com/crankyoldgit/irremoteesp8266);
+* l'accesso web offerto tramite la libreria ESP8266WebServer (https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer);
+* l'utilizzo di tecniche di comunicazione con il client web tramite delle semplici chiamate di tipo webservice, delegando alla interfaccia sviluppata in HTML, tutta la complessità di interpretazione del comportamento utente;
 * la possibilità di poter gestire tale prestazione oltre che attraverso la selezione di bottoni, anche tramite semplici comandi vocali.
 
 ## Configurazione hardware
@@ -17,6 +17,7 @@ Gli schemi di collegamento quindi sono almeno due: uno propriamente di "potenza"
 La ragione per cui si è prestata molta cura nel cercare di separare elettricamente i due circuiti è stata data da diversi fattori e tra questi:
 * dalla diversa alimentazione, 3.3v per il microcontrollore e 5v per il LED IR,
 * dalle interferenze del circuito ad alta potenza nei confronti del microcontrollore ed in particolare per diversi problemi legati all'accesso della memoria flash, problemi durante l'avvio del microcontrollore, dipendente dallo stato delle porte collegate, e diversi altri che rendevano il circuito poco stabile.
+
 Da questo la necessità di disaccoppiare la porta del microcontrollore dal resto del circuito tramite l'optoisolatore 6N137, la cui scelta è stata dettata dalle specifiche prestazioni in media ed alta frequenza.
 L'uso del transistor NPN 2N2222 (che potrebbe essere sostituito anche con un transistor PNP che tuttavia richiederebbe la inversione della polarizzazione del circuito e alcune altri ritocchi al software), si è reso necessario per gestire opportunamente la richiesta di corrente da parte del LED IR e non gravare sul optoisolatore.
 
@@ -29,7 +30,6 @@ Il risultato del montaggio è rappresentato dalle foto di seguito
 
 ![Montato](https://github.com/robertopapi/ESP8266/blob/6b5443f6815cca6a10c0ab0dcb581e2e6d1d9c9a/WiFi_IR/20261014_183854.jpg)
 ![Esploso](https://github.com/robertopapi/ESP8266/blob/4937b714c5c3af02f73faeccb7e3fa268f4478d0/WiFi_IR/20261014_185031.jpg)
-
 
 ## Software
 
@@ -59,22 +59,22 @@ Come detto prima, il "vocabolario" definisce le parole chiavi corrispondenti ai 
 
 * comandi "diretti" (direct) - sono i comandi che attivano una determinata funzione, che corrispondono esattamente al tasto del telecomando (eccetto uno di cui spiego più avanti) e che non dipendono direttamente dal contesto attivo in quel momento sulla tv.
 * comandi "di navigazione" (navigation) - sono i comandi dell'ipotetico cursore (es. freccia su e giù), che pure corrispondono ai tasti del telecomando (eccetto uno come nella categoria precedente) e che tuttavia sono efficaci solo nell'ambito dei contesti che prevedono questo tipo di navigazione.
-* comandi "programmi-canali" (program-channels) - sono comandi "virtuali" che NON corrispondono ai singoli tasti del telecomando ma a loro brevi sequenze (banalmente corrispondonon al canale memorizzato sulla tv che può essere costituito da una o più cifre)
+* comandi "programmi-canali" (program-channels) - sono comandi "virtuali" che NON corrispondono ai singoli tasti del telecomando ma a loro brevi sequenze (banalmente corrispondono al canale memorizzato sulla tv che può essere costituito da una o più cifre)
 
-Tutti i comandi hanno l'attributo "repeat" che sta ad indicare al software che se posto a vero, a seguire potrebbe esserci il numero delle volte che tale comando (cioè virtualmente tale tasto del telecomando) deve essere ripetuto (ad esempio "DIMINUISCI il volume di 3" sta a significare che il tasto VOL_DOWN, cioè il treno di impulsi IR corrispondenti, deve essere ripetuto tre volte). Laddove l'attributo repeat è falso allora l'eventuale numero presente nel testo del comando vocale deve essere ignorato, ovvero deve essere trattato in modo particolare in base a quanto descritto poi.
+Tutti i comandi hanno l'attributo "repeat" che sta ad indicare al software che, se posto a vero, a seguire potrebbe esserci il numero delle volte che tale comando (cioè virtualmente tale tasto del telecomando) deve essere ripetuto (ad esempio "DIMINUISCI il volume di 3" sta a significare che il tasto VOL_DOWN, cioè il treno di impulsi IR corrispondenti, deve essere ripetuto tre volte). Laddove l'attributo repeat è falso allora l'eventuale numero presente nel testo del comando vocale deve essere ignorato, ovvero deve essere trattato in modo particolare in base a quanto descritto poi.
 
-Tra i comandi diretti e quelli di navigazione ci sono due comandi speciali che hanno codice rispettivamente 99 e 98 e che sono necessari per l'intepretazione dei comandi vocali successivi.
+Tra i comandi diretti e quelli di navigazione ci sono due comandi speciali che hanno codice rispettivamente 99 e 98 e che sono necessari per l'intepretazione dei comandi vocali precedenti o successivi.
 Nello specifico il comando "CHANNEL-PAGE" (codice 99) dice al software che il testo corrispondente al comando vocale contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e "2").
-Il secondo comando speciale che è solo una commodity, il comando "MORE", sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
-Per finire l'elenco dei programmi risente dell'ordine di memorizzazione dei canali sul televisore (che non è quella offerta di default normalmente dai televisori), pertanto è stata gestita sempre nel vocabolario per permetterne la personalizzazione (la a scelta di uno sfondo di background dei tasti per editore è del tutto personale).
+Il secondo comando speciale, che è solo una commodity, il comando "MORE", sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
+Per finire l'elenco dei programmi risente dell'ordine di memorizzazione dei canali sul televisore (che non è quella offerta di default normalmente dai televisori), pertanto è stato gestito sempre nel vocabolario per permetterne la personalizzazione (la scelta di uno sfondo di background dei tasti per editore è del tutto personale).
 
 ### Interfaccia utente
-la GUI è suddivisa in tre parti
+la GUI è suddivisa in tre parti:
 * un header con il titolo (e un bottone nascosto che se cliccato mostra un textbox con alcuni testi di diagnostica del codice javascript)
 * un corpo centrale con le diverse raprresentazioni dei comandi selezionabili con il gesture swipe (per pigrizia ho utilizzato la libreria javascript (https://github.com/john-doherty/swiped-events) per facilitarmi il compito della implememtazione
 * un footer con una div normalmente nascosta che contiene la risposta del server al comando inviato e i piccoli tasti di selezione delle pagine del corpo centrale
 
-Nel corpo centrale l'ultima pagina da la possibilità di modificare e salvare il vocabolario, sia editandolo direttamente che permettendo di caricare un file. Ovviamente il formato del json deve essere rigorosamente rispettato.
+Nel corpo centrale l'ultima pagina dà la possibilità di modificare e salvare il vocabolario, sia editandolo direttamente che permettendo di caricare un file. Ovviamente il formato del json deve essere rigorosamente rispettato.
 
 Di seguito gli screenshot delle singole pagine
 
@@ -93,8 +93,5 @@ chrome://flags/#unsafely-treat-insecure-origin-as-secure
 e specificando l'indirizzo IP considerato sicuro e seguendo la procedura indicata per l'attivazione del flag
 
 Ulteriore limitazione è data dal tempo di attivazione del microfono che sui cellulare è di poche decine di secondi. A questo ho provveduto con il tasto "cont" presente nella GUI e che se selezionato, riattiva il microfono automaticamente. Tale prestazione diventa utile sopratutto durante la navigazione nei menu contestuali.
-
- 
-
 
 
