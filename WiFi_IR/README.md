@@ -26,8 +26,11 @@ Lo schema che rappresenta il circuito di governo del microcontrollore presenta, 
 Il connettore rappresentato in alto in questo secondo schema corrisponde a quello del circuito di potenza ma con un diverso ordine dei pin, per ragioni di pulizia grafica dello schema.
 
 ## Software
+
+### Scelte generali
 Durante la realizzazione del sistema, sono stati riscontrati diversi problemi legati all'accesso alla memoria flash. I problemi erano probabilmente dovuti al fatto che il software accedeva a tale memoria quando il microcontrollore era ancora in fase di avvio, fase evidentemente delicata, soprattutto in presenza di spike di corrente, cali di tensione e fenomeni simili. Per tanto lo sviluppo del software è stato teso a limitare il più possibile, se non ad escluderlo completamente, l'acceso alla memoria flash, anche se questo ha richiesto l'implementazione del filesystem LittleFS, dove memorizzare le credenziali di accesso alla rete wifi (data/json/c.json) i file esposti dal webserver (a partire dalla directory data, dove sono memorizzati i file html, e dalle subdirectory css, js e json).
 
+### il vocabolario
 Un altro accorgimento, utile durante la fase di sviluppo, è stato quello di definire un vocabolario editabile (data/json/vocabulary.json), dove specificare le parole chiave che il software di interpretazione del parlato (in italiano suona proprio male: parlo del speech to text) utilizza per attivare i singoli comandi che vanno trasformati in sequenze di impulsi per il led IR.
 
 Il modulo principale dello sketch (esp8266_IR_WIFI.ino) è molto semplice e si limita a caricare le librerie, attivare l'interfaccia verso la rete e il webserver.
