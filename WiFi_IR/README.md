@@ -28,7 +28,7 @@ Il connettore rappresentato in alto in questo secondo schema corrisponde a quell
 Il risultato del montaggio è rappresentato dalle foto di seguito
 
 ![Montato](https://github.com/robertopapi/ESP8266/blob/6b5443f6815cca6a10c0ab0dcb581e2e6d1d9c9a/WiFi_IR/20261014_183854.jpg)
-![Esploso](https://github.com/robertopapi/ESP8266/blob/8e425640b99f4be8098ed4ded255e43e88edabc3/WiFi_IR/20261014_183353.jpg)
+![Esploso](https://github.com/robertopapi/ESP8266/blob/4937b714c5c3af02f73faeccb7e3fa268f4478d0/WiFi_IR/20261014_185031.jpg)
 
 
 ## Software
