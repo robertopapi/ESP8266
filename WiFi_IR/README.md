@@ -30,8 +30,9 @@ Il connettore rappresentato in alto in questo secondo schema corrisponde a quell
 ### Scelte generali
 Durante la realizzazione del sistema, sono stati riscontrati diversi problemi legati all'accesso alla memoria flash. I problemi erano probabilmente dovuti al fatto che il software accedeva a tale memoria quando il microcontrollore era ancora in fase di avvio, fase evidentemente delicata, soprattutto in presenza di spike di corrente, cali di tensione e fenomeni simili. Per tanto lo sviluppo del software è stato teso a limitare il più possibile, se non ad escluderlo completamente, l'acceso alla memoria flash, anche se questo ha richiesto l'implementazione del filesystem LittleFS, dove memorizzare le credenziali di accesso alla rete wifi (data/json/c.json) i file esposti dal webserver (a partire dalla directory data, dove sono memorizzati i file html, e dalle subdirectory css, js e json).
 
-### il vocabolario
 Un altro accorgimento, utile durante la fase di sviluppo, è stato quello di definire un vocabolario editabile (data/json/vocabulary.json), dove specificare le parole chiave che il software di interpretazione del parlato (in italiano suona proprio male: parlo del speech to text) utilizza per attivare i singoli comandi che vanno trasformati in sequenze di impulsi per il led IR.
+
+La logica di funzionamento del sistema è stata distribuita in modo da gravare il meno possibile sulle prestazioni del microcontrollore. per tanto tutta la logica relativa alla interpretazione dei comandi vocali e tutta la complessità della interfaccia utente è stata allocata lato interfaccia web mentre al piccolo microcontrollore è delegato la gestione dell'interfaccia di rete, la pubblicazione delle pagine web e la scarna gestione dell'invio degli impulsi IR.
 
 Il modulo principale dello sketch (esp8266_IR_WIFI.ino) è molto semplice e si limita a caricare le librerie, attivare l'interfaccia verso la rete e il webserver.
 
@@ -43,8 +44,11 @@ Il modulo più delicato è il file header (IRCodeConf_sony.h) contenente i codic
 
 I codici sono stati determinati con un circuito diverso che ha permesso appunto la rilevazione dei treni di impulsi emessi dal telecomando e che sono stati memorizzati in una struct specifica.
 
+La sequenza binaria corrispondente a ciascun codice è "ruotata" via software con la funzione LSB2MSB(), a causa del fatto che il circuito di rilevazione dei codici emessi dal telecomando fisico è stato realizzato con un classico arduino mentre il presente circuito è stato realizzato con il nostro ESP-12F, benché è stata utilizzata la stessa libreria software. Non mi è chiaro il motivo, ma il passaggio da una tecnologia a l'altra ha richiesto appunto tale intervento di rotazione dell'ordine di emissione dei singoli bit delle sequenze.
+
 Ciascuna sequenza corrisponde ad un elemento di un array il cui indice è utilizzato per la scambio di informazioni tra pagina web e software che materialmente emette la sequenza corrispondente che va ad attivare il led IR.
 
+### Il vocabolario
 Come detto prima, il "vocabolario" definisce le parole chiavi corrispondenti ai singoli tasti del teleecomando che possono essere premuti. Va precisato tuttavia che la pressione dei tasti del telecomando è subordinata alla funzione-contesto attivo in quel momento sul televisore e che il nostro piccolo sistema ovviamente non conosce. Da ciò la necessità di suddividere i comandi in alcune categorie che riassumo di seguito:
 
 * comandi "diretti" (direct) - sono i comandi che attivano una determinata funzione, che corrispondono esattamente al tasto del telecomando (eccetto uno di cui spiego più avanti) e che non dipendono direttamente dal contesto attivo in quel momento sulla tv.
@@ -56,13 +60,18 @@ Tutti i comandi hanno l'attributo "repeat" che sta ad indicare al software che s
 Tra i comandi diretti e quelli di navigazione ci sono due comandi speciali che hanno codice rispettivamente 99 e 98 e che sono necessari per l'intepretazione dei comandi vocali successivi.
 Nello specifico il comando "CHANNEL-PAGE" (codice 99) dice al software che il testo corrispondente al comando vocale contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e "2").
 Il secondo comando speciale che è solo una commodity, il comando "MORE", sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
+Per finire l'elenco dei programmi risente dell'ordine di memorizzazione dei canali sul televisore (che non è quella offerta di default normalmente dai televisori), pertanto è stata gestita sempre nel vocabolario per permetterne la personalizzazione (la a scelta di uno sfondo di background dei tasti per editore è del tutto personale).
 
+### Interfaccia utente
+la GUI è suddivisa in tre parti
+* un header con il titolo (e un bottone nascosto che se cliccato mostra un textbox con alcuni testi di diagnostica del codice javascript)
+* un corpo centrale con le diverse raprresentazioni dei comandi selezionabili con il gesture swipe (per pigrizia ho utilizzato la libreria javascript (https://github.com/john-doherty/swiped-events) per facilitarmi il compito della implememtazione
+* un footer con una div normalmente nascosta che contiene la risposta del server al comando inviato e i piccoli tasti di selezione delle pagine del corpo centrale
 
-
-La sequenza binaria corrispondente a ciascun codice in questo specifico caso è stata "ruotata" con la funzione LSB2MSB(), a causa del fatto che il circuito di rilevazione dei codici emessi dal telecomando fisico è stato realizzato con un classico arduino mentre il presente circuito è stato realizzato con il nostro ESP-12F, benché è stata utilizzata la stessa libreria software. Non mi è chiaro il motivo, ma il passaggio da una tecnologia a l'altra ha richiesto appunto tale intervento di rotazione dell'ordine di emissione dei singoli bit delle sequenze.
+Nel corpo centrale l'ultima pagina da la possibilità di modificare e salvare il vocabolario, sia editandolo direttamente che permettendo di caricare un file. Ovviamente il formato del json deve essere rigorosamente rispettato.
 
 # Funzionamento
-Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server.
+Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server 
 
 ## Conclusioni
 
