@@ -84,7 +84,7 @@ Per ora l'unico browser in grado di fornire la prestazione di speech2text sena l
 
 chrome://flags/#unsafely-treat-insecure-origin-as-secure
 
-e specificando l'indirizzo IP considerato sicuro e seguendo l aprocedura indicata per l'attivazione del flag
+e specificando l'indirizzo IP considerato sicuro e seguendo la procedura indicata per l'attivazione del flag
 
 Ulteriore limitazione è data dal tempo di attivazione del microfono che sui cellulare è di poche decine di secondi. A questo ho provveduto con il tasto "cont" presente nella GUI e che se selezionato, riattiva il microfono automaticamente. Tale prestazione diventa utile sopratutto durante la navigazione nei menu contestuali.
 
