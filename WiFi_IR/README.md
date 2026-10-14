@@ -79,9 +79,14 @@ Di seguito gli screenshot delle singole pagine
 
 
 # Funzionamento
-Collegati i componenti e alimentato i circuiti, una volta che il browser web client interrroga il server 
+La comodità di avere un telecomando virtuale ovviamente sta nel poterlo utilizzare col telefono cellulare e l'interfaccia web è stata sviluppata con questo approccio. Tuttavia vanno fatte due premesse importanti.
+Per ora l'unico browser in grado di fornire la prestazione di speech2text sena limitazioni è il browser chrome. Va pure specificato che quest'ultimo, in base alle moderne normative in fatto di sicurezza, non permette l'attivazione del microfono da parte di una pagina web se non pubblicata via https, cosa che sul piccolo ESP-12F è particolarmente gravosa e complessa da implementare. La soluzione è quella di intervenire sui flag di personalizzazione di chrome ed in particolare scrivendo su la barra di ricerca il comando
 
-## Conclusioni
+chrome://flags/#unsafely-treat-insecure-origin-as-secure
+
+e specificando l'indirizzo IP considerato sicuro e seguendo l aprocedura indicata per l'attivazione del flag
+
+Ulteriore limitazione è data dal tempo di attivazione del microfono che sui cellulare è di poche decine di secondi. A questo ho provveduto con il tasto "cont" presente nella GUI e che se selezionato, riattiva il microfono automaticamente. Tale prestazione diventa utile sopratutto durante la navigazione nei menu contestuali.
 
  
 
