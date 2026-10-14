@@ -72,7 +72,7 @@ Nel corpo centrale l'ultima pagina da la possibilità di modificare e salvare il
 
 Di seguito gli screenshot delle singole pagine
 
-![comandi vocali](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
+![comandi vocali](https://github.com/robertopapi/ESP8266/blob/d8abb9b4873a8ba08e6ad45b32e8c074ce7c7d3a/WiFi_IR/Screenshot_20261012_092616_Chrome.jpg)
 ![tasti](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
 ![scorciatoie](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
 ![vocabolario](https://github.com/robertopapi/ESP8266-01s/blob/fcc14a7b672705b6838940ba3d4204f068edf33b/WiFi_IR/20260930%20IR%20POWER%20RED.png)
