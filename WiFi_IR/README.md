@@ -65,7 +65,7 @@ Tutti i comandi hanno l'attributo "repeat" che sta ad indicare al software che, 
 
 Tra i comandi diretti e quelli di navigazione ci sono due comandi speciali che hanno codice rispettivamente 99 e 98 e che sono necessari per l'intepretazione dei comandi vocali precedenti o successivi.
 
-Nello specifico il comando "CHANNEL-PAGE" (codice 99) dice al software che il testo corrispondente al comando vocale contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e "2").
+Nello specifico il comando "CHANNEL-PAGE" (codice 99) dice al software che il testo corrispondente al comando vocale contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e a seguire "2").
 
 Il secondo comando speciale, che è solo una commodity, il comando "MORE", sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
 
