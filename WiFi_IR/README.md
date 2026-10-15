@@ -78,8 +78,8 @@ Per finire l'elenco dei programmi risente dell'ordine di memorizzazione dei cana
 ### Interfaccia utente
 la GUI è suddivisa in tre parti:
 * un header con il titolo (e un bottone nascosto che se cliccato mostra un textbox con alcuni testi di diagnostica del codice javascript)
-* un corpo centrale con le diverse raprresentazioni dei comandi selezionabili con il gesture swipe (per pigrizia ho utilizzato la libreria javascript (https://github.com/john-doherty/swiped-events) per facilitarmi il compito della implememtazione
-* un footer con una div normalmente nascosta che contiene la risposta del server al comando inviato e i piccoli tasti di selezione delle pagine del corpo centrale
+* un corpo centrale con le diverse raprresentazioni dei comandi selezionabili con il gesture swipe. Per pigrizia ho utilizzato la libreria javascript (https://github.com/john-doherty/swiped-events) per facilitarmi il compito della implememtazione.
+* un footer con una div normalmente nascosta che contiene la risposta del server al comando inviato e i piccoli tasti di selezione delle pagine del corpo centrale.
 
 Nel corpo centrale l'ultima pagina dà la possibilità di modificare e salvare il vocabolario, sia editandolo direttamente che permettendo di caricare un file. Ovviamente il formato del json deve essere rigorosamente rispettato.
 
@@ -93,12 +93,13 @@ Di seguito gli screenshot delle singole pagine
 
 # Funzionamento
 La comodità di avere un telecomando virtuale ovviamente sta nel poterlo utilizzare col telefono cellulare e l'interfaccia web è stata sviluppata con questo approccio. Tuttavia vanno fatte due premesse importanti.
+
 Per ora l'unico browser in grado di fornire la prestazione di speech2text senza limitazioni è il browser chrome. Va pure specificato che quest'ultimo, in base alle moderne normative in fatto di sicurezza, non permette l'attivazione del microfono da parte di una pagina web se non pubblicata via https, cosa che sul piccolo ESP-12F è particolarmente gravosa e complessa da implementare. La soluzione è quella di intervenire sui flag di personalizzazione di chrome ed in particolare scrivendo su la barra di ricerca il comando
 
 chrome://flags/#unsafely-treat-insecure-origin-as-secure
 
-e specificando l'indirizzo IP considerato sicuro e seguendo la procedura indicata per l'attivazione del flag
+specificando l'indirizzo IP considerato sicuro e seguendo la procedura indicata per l'attivazione del flag.
 
-Ulteriore limitazione è data dal tempo di attivazione del microfono che sui cellulare è di poche decine di secondi. A questo ho provveduto con il tasto "cont" presente nella GUI che, se selezionato, riattiva il microfono automaticamente. Tale prestazione diventa utile sopratutto durante la navigazione nei menu contestuali.
+Sui cellulari il tempo di attivazione del microfono è di poche decine di secondi. A questo ho provveduto con il tasto "cont", presente nella GUI, che, se selezionato, riattiva il microfono automaticamente. Tale prestazione diventa utile sopratutto durante la navigazione nei menu contestuali.
 
 
