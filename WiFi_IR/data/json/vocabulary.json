@@ -129,187 +129,224 @@
    {
     "prg": "RAI1 HD",
     "bg": "blue",
-    "chnum": "1"
+    "chnum": "1",
+    "keywords": ["rai 1", "rai uno"]
    },
    {
     "prg": "RAI2 HD",
     "bg": "blue",
-    "chnum": "2"
+    "chnum": "2",
+    "keywords": ["rai 2", "rai due"]
    },
    {
     "prg": "RAI3 HD",
     "bg": "blue",
-    "chnum": "3"
+    "chnum": "3",
+    "keywords": ["rai 3", "rai tre"]
    },
    {
     "prg": "RAI4",
     "bg": "blue",
-    "chnum": "4"
+    "chnum": "4",
+    "keywords": ["rai 4", "rai quattro"]
    },
    {
     "prg": "RAI5",
     "bg": "blue",
-    "chnum": "5"
+    "chnum": "5",
+    "keywords": ["rai 5", "rai cinque"]
    },
    {
     "prg": "RAI Movie HD",
     "bg": "blue",
-    "chnum": "6"
+    "chnum": "6",
+    "keywords": ["rai movie"]
    },
    {
     "prg": "RAI Premium",
     "bg": "blue",
-    "chnum": "7"
+    "chnum": "7",
+    "keywords": ["rai premium"]
    },
    {
     "prg": "RAI News 24",
     "bg": "blue",
-    "chnum": "10"
+    "chnum": "10",
+    "keywords": ["rainews", "rai news", "rai news24", "rai news 24", "rai news ventiquattro"]
    },
    {
     "prg": "RAI 3 TGR Lazio HD",
     "bg": "blue",
-    "chnum": "11"
+    "chnum": "11",
+    "keywords": ["rai 3 regione", "rai regione", "rai regione lazio", "rai tgr lazio", "rai t g r lazio", "tgr lazio"]
    },
    {
     "prg": "Rete 4 HD",
     "bg": "red",
-    "chnum": "12"
+    "chnum": "12",
+    "keywords": ["rete 4", "rete quattro", "mediaset rete 4"]
    },
    {
     "prg": "Canale 5 HD",
     "bg": "red",
-    "chnum": "13"
+    "chnum": "13",
+    "keywords": ["canale 5", "canale cinque", "mediaset canale 5"]
    },
    {
     "prg": "Italia 1 HD",
     "bg": "red",
-    "chnum": "14"
+    "chnum": "14",
+    "keywords": ["italia 1", "italia uno", "mediaset italia 1"]
    },
    {
     "prg": "Mediaset Italia 2 HD",
     "bg": "red",
-    "chnum": "15"
+    "chnum": "15",
+    "keywords": ["italia 2", "italia due", "mediaset italia 2"]
    },
    {
     "prg": "Cine34 HD",
     "bg": "red",
-    "chnum": "16"
+    "chnum": "16",
+    "keywords": ["cine34", "cine 34", "cine trentaquattro", "mediaset cine 34"]
    },
    {
     "prg": "La5 HD",
     "bg": "red",
-    "chnum": "17"
+    "chnum": "17",
+    "keywords": ["la 5", "la cinque", "mediaset la 5"]
    },
    {
     "prg": "Iris HD",
     "bg": "red",
-    "chnum": "18"
+    "chnum": "18",
+    "keywords": ["iris", "mediaset iris"]
    },
    {
     "prg": "20 Mediaset HD",
     "bg": "red",
-    "chnum": "19"
+    "chnum": "19",
+    "keywords": ["20", "il 20", "venti", "mediaset 20", "20 mediaset"]
    },
    {
     "prg": "Mediaset Extra HD",
     "bg": "red",
-    "chnum": "20"
+    "chnum": "20",
+    "keywords": ["extra", "mediaset extra"]
    },
    {
     "prg": "27 twentyseven HD",
     "bg": "red",
-    "chnum": "21"
-   },
-   {
-    "prg": "La7 HD",
-    "bg": "brown",
-    "chnum": "22"
+    "chnum": "21",
+    "keywords": ["27", "ventisette", "twenty seven", "twentyseven", "mediaset twentyseven", "mediaset twenty seven"]
    },
    {
     "prg": "La7 Cinema",
     "bg": "brown",
-    "chnum": "23"
+    "chnum": "23",
+    "keywords": ["la7 cinema", "la 7 cinema", "la sette cinema"]
+   },
+   {
+    "prg": "La7 HD",
+    "bg": "brown",
+    "chnum": "22",
+    "keywords": ["la7", "la 7", "la sette"]
    },
    {
     "prg": "Cielo",
     "bg": "black",
-    "chnum": "24"
+    "chnum": "24",
+    "keywords": ["cielo"]
    },
    {
     "prg": "Real Time",
     "bg": "olive",
-    "chnum": "25"
+    "chnum": "25",
+    "keywords": ["real time"]
    },
    {
     "prg": "DMAX",
     "bg": "olive",
-    "chnum": "26"
+    "chnum": "26",
+    "keywords": ["dmax", "di max", "d max"]
    },
    {
     "prg": "Focus HD",
     "bg": "red",
-    "chnum": "27"
+    "chnum": "27",
+    "keywords": ["focus"]
    },
    {
     "prg": "Nove",
     "bg": "olive",
-    "chnum": "28"
+    "chnum": "28",
+    "keywords": ["il 9", "9", "nove"]
    },
    {
     "prg": "TV8",
     "bg": "black",
-    "chnum": "29"
+    "chnum": "29",
+    "keywords": ["tv 8", "tv otto", "ti vu otto", "ti vu 8"]
    },
    {
     "prg": "Discovery Turbo",
     "bg": "olive",
-    "chnum": "30"
+    "chnum": "30",
+    "keywords": ["Discovery Turbo", "turbo"]
    },
    {
     "prg": "FoodNetwork",
     "bg": "olive",
-    "chnum": "31"
+    "chnum": "31",
+    "keywords": ["FoodNetwork", "Food Network"]
    },
    {
     "prg": "Discovery",
     "bg": "olive",
-    "chnum": "32"
+    "chnum": "32",
+    "keywords": ["Discovery"]
    },
    {
     "prg": "SKY TG 24",
     "bg": "black",
-    "chnum": "33"
+    "chnum": "33",
+    "keywords": ["sky tg24", "sky tg 24", "sky t g 24", "sky t g ventiquattro"]
    },
    {
     "prg": "Virgin Radio",
     "bg": "red",
-    "chnum": "34"
+    "chnum": "34",
+    "keywords": ["virgin radio", "virgin"]
    },
    {
     "prg": "Radio24 TV",
     "bg": "lime",
-    "chnum": "35"
+    "chnum": "35",
+    "keywords": ["radio 24", "radio 24 tv", "radio ventiquattro tv"]
    },
    {
     "prg": "VH1",
     "bg": "violet",
-    "chnum": "36"
+    "chnum": "36",
+    "keywords": ["vh1", "vh 1", "vi eich 1"]
    },
    {
     "prg": "vatican media HD",
     "bg": "indianred",
-    "chnum": "37"
+    "chnum": "37",
+    "keywords": ["vatican media", "vaticano"]
    },
    {
     "prg": "RAI3 TGR Toscana",
     "bg": "blue",
-    "chnum": "39"
+    "chnum": "39",
+    "keywords": ["rai regione toscana", "tgr toscana"]
    },
    {
     "prg": "RAI3 TGR Umbria",
     "bg": "blue",
-    "chnum": "40"
+    "chnum": "40",
+    "keywords": ["rai regione umbria", "tgr umbria"]
    }
   ]
  }
