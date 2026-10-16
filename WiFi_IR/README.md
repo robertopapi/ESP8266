@@ -69,15 +69,15 @@ I comandi diretti e di navigazione hanno l'attributo "repeat" che sta ad indicar
 
 Tra i comandi diretti e quelli di navigazione ci sono due comandi speciali che hanno codice rispettivamente 99 e 98 e che sono necessari per l'intepretazione dei comandi vocali precedenti o successivi.
 
-Nello specifico il comando "CHANNEL-PAGE" (codice 99) dice al software che il testo corrispondente al comando vocale contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e a seguire "2").
+Nello specifico il comando "CHANNEL-PAGE" (codice 99 corrispondente alla parola chiave "canale" o "pagina") dice al software che il testo corrispondente al comando vocale completo contiene un numero che deve essere interpretato non come il numero di volte che il treno di impulsi IR deve essere ripetuto ma come il numero di canale o pagina che deve essere inviato sottoforma di una sequenza di numeri/tasti del telecomando (ad esempio "metti il CANALE 32" sta a significare che devono essere emessi di seguito i treni di impulsi IR corrispondenti ai tasti "3" e a seguire "2").
 
-Il secondo comando speciale, che è solo una commodity, il comando "MORE", sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
+Il secondo comando speciale, che è solo una commodity, il comando "MORE" (codice 98 corrispodente al comando vocale "ancora" e "vai"), sta ad indicare al software che deve essere ripetuto il comando vocale precedente che è stato pronunciato se ripetibile (repeat == true).
 
-L'elenco comandi vocali legati ai singoli programmi-canali è elaborato per primo dato che quasi sempre si tratta della composizione di più parole (es. canale 5) che presi singolarmente possono essere confusi con i comandi diretti. Se il software non riconosce il comando vocale tra questi, allora continua la ricerca nell'elenco dei comandi diretti e di navigazione.
+L'elenco comandi vocali legati ai singoli programmi-canali è elaborato per primo, dato che quasi sempre si tratta della composizione di più parole (es. "canale 5") che prese singolarmente possono essere confuse con i comandi diretti. Se il software non riconosce il comando vocale tra questi, allora continua la ricerca nell'elenco dei comandi diretti e di navigazione.
 
 Per la stessa ragione, l'ordine dei programmi-canali non è casuale ma risente della eventuale identificazione dubbia (es. il canale "la7 cinema" deve precedere il canale "la7" per evitare di confonderli).
 
-Per finire l'elenco dei programmi risente dell'ordine di memorizzazione dei canali sul televisore (che non è quella offerta di default normalmente dai televisori), pertanto è stato gestito sempre nel vocabolario per permetterne la personalizzazione (la scelta di uno sfondo di background dei tasti per editore è del tutto personale).
+Per finire l'elenco dei programmi risente dell'ordine di memorizzazione dei canali sul televisore (che non è quella offerta di default normalmente dai televisori), pertanto gestito nel vocabolario ne permette la personalizzazione (la scelta di uno sfondo di background dei tasti per editore è del tutto personale).
 
 ### Interfaccia utente
 la GUI è suddivisa in tre parti:
