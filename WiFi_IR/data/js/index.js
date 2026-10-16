@@ -157,8 +157,28 @@ function processVoiceCommand(transcript)
  document.getElementById("cleanText").value = cleanText;
 
  let matchedCommand = null;
+ let repeatCount = 1; // 2. Estrazione del moltiplicatore/quantità, Default: 1 sola volta
+ 
+ // prima verifico se il comando è nella lista dei nomi dei programmi
+ 
+ const allChannels = Object.values(vocabulary.program.channels).flat();
 
- // Unisco i comandi (direct, navigation) per la ricerca
+ for (const cmd of allChannels)// 1. Ricerca del comando corrispondente
+ {
+  const found = cmd.keywords.some(kw => cleanText.includes(kw));
+  if (found)
+  {
+   sendIrNumbers(cmd.chnum.trim());
+   debug("Comando: " + cmd.prg + "(canale: " + cmd.chnum + ") Ripetizioni: " + repeatCount);
+   document.getElementById("matchedCommand").value = String(cmd.prg);
+   document.getElementById("repeat").value = String(repeatCount);
+   return; // esco dalla funzione
+  }
+ }
+
+ // se NON è nella lista dei programmi allora lo cerco come comando semplice
+
+ // Unisco i comandi (direct e navigation) per la ricerca
  const allCommands = Object.values(vocabulary.commands).flat();
 
  for (const cmd of allCommands)// 1. Ricerca del comando corrispondente
@@ -177,8 +197,6 @@ function processVoiceCommand(transcript)
   return;
  }
 
- let repeatCount = 1; // 2. Estrazione del moltiplicatore/quantità, Default: 1 sola volta
- 
  const words = cleanText.split(/\s+/);
 
  let s = "";
